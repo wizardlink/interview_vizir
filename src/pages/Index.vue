@@ -1,49 +1,95 @@
 <template>
-  <q-page class="row items-center justify-evenly">
-    <example-component
-      title="Example component"
-      active
-      :todos="todos"
-      :meta="meta"
-    ></example-component>
+  <q-page class="column">
+    <!-- Heading -->
+    <section class="col-4 bg-primary">
+      <div class="text-center q-px-md">
+        <h2 class="text-grey-1">
+          <q-icon name="call" style="font-size: 0.8em; padding-right: 0;" />
+          Telzir
+        </h2>
+
+        <p class="text-grey-4">
+          Com a Telzir você tem planos de ligações interestaduais sem pagar nada!
+          Oferecemos planos de 30, 60 e 120 minutos de ligação, os quais você apenas paga pelos minutos excedentes.
+        </p>
+      </div>
+    </section>
+
+    <!-- Converter -->
+    <section class="col-8 q-mt-xl">
+      <h3 class="text-center">
+        Conversor
+      </h3>
+
+      <conversor :options="conversorOptions"></conversor>
+    </section>
+
   </q-page>
 </template>
 
 <script lang="ts">
-import { Todo, Meta } from 'components/models'
-import ExampleComponent from 'components/CompositionComponent.vue'
 import { defineComponent, ref } from '@vue/composition-api'
+
+import Conversor from 'components/Conversor.vue'
+import { IConversorOptions } from 'components/models'
+
+const callOptions = new Map<string, Map<string, number>>([
+  [
+    '011',
+    new Map([
+      [
+        '016',
+        1.90
+      ],
+      [
+        '017',
+        1.70
+      ],
+      [
+        '018',
+        0.90
+      ]
+    ])
+  ],
+  [
+    '016',
+    new Map([
+      [
+        '011',
+        2.90
+      ]
+    ])
+  ],
+  [
+    '017',
+    new Map([
+      [
+        '011',
+        2.70
+      ]
+    ])
+  ],
+  [
+    '018',
+    new Map([
+      [
+        '011',
+        1.90
+      ]
+    ])
+  ]
+])
 
 export default defineComponent({
   name: 'PageIndex',
-  components: { ExampleComponent },
+  components: { Conversor },
   setup () {
-    const todos = ref<Todo[]>([
-      {
-        id: 1,
-        content: 'ct1'
-      },
-      {
-        id: 2,
-        content: 'ct2'
-      },
-      {
-        id: 3,
-        content: 'ct3'
-      },
-      {
-        id: 4,
-        content: 'ct4'
-      },
-      {
-        id: 5,
-        content: 'ct5'
-      }
-    ])
-    const meta = ref<Meta>({
-      totalCount: 1200
-    })
-    return { todos, meta }
+    return {
+      conversorOptions: ref<IConversorOptions>({
+        call: callOptions,
+        time: [30, 60, 120]
+      })
+    }
   }
 })
 </script>
