@@ -87,7 +87,7 @@ export default defineComponent({
     return {
       conversorOptions: ref<IConversorOptions>({
         call: callOptions,
-        time: [30, 60, 120]
+        plans: [30, 60, 120]
       })
     }
   }
