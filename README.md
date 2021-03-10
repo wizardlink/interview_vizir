@@ -1,6 +1,6 @@
 <div>
 	<p align="center">
-		<a href="https://vercel.com">
+		<a href="https://quasar.dev/">
 			<img src="https://cdn.quasar.dev/logo/512/quasar-logo.png" height="200px" />
 		</a>
 	</p>
