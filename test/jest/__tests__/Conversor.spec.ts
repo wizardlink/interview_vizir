@@ -4,8 +4,8 @@ import { VueConstructor } from 'vue'
 import * as All from 'quasar'
 
 import Conversor from 'components/Conversor.vue'
-import TimeToPayment from 'components/TimeToPayment.vue'
-import ConversorSelector from 'components/ConversorSelector.vue'
+import ConversorSelectors from 'components/ConversorSelectors.vue'
+import Selector from 'components/Selector.vue'
 
 const { Quasar } = All
 
@@ -52,7 +52,7 @@ const dummyConversorProps = {
 const localVue = createLocalVue()
 localVue.use(Quasar, { components })
 
-describe('Conversor', () => {
+describe('Conversor.vue', () => {
   const dummyComponentData = {
     localVue,
     ...dummyConversorProps,
@@ -75,34 +75,34 @@ describe('Conversor', () => {
 
   it('has the the necessary inputs for data', () => {
     const wrapper = mount(Conversor, dummyComponentData)
-    const component = wrapper.getComponent(TimeToPayment)
+    const component = wrapper.getComponent(ConversorSelectors)
 
     expect(component.exists()).toBe(true)
     expect(component.props('options')).toBeTruthy()
   })
 })
 
-describe('TimeToPayment', () => {
+describe('ConversorSelectors.vue', () => {
   const dummyComponentData = {
     localVue,
     ...dummyConversorProps
   }
 
   test('mounts without any errors', () => {
-    const wrapper = mount(TimeToPayment, dummyComponentData)
+    const wrapper = mount(ConversorSelectors, dummyComponentData)
 
     expect(wrapper).toBeTruthy()
   })
 
   it('has at least one selector', () => {
-    const wrapper = mount(TimeToPayment, dummyComponentData)
-    const component = wrapper.findAllComponents(ConversorSelector)
+    const wrapper = mount(ConversorSelectors, dummyComponentData)
+    const component = wrapper.findAllComponents(Selector)
 
     expect(component.length > 0).toBe(true)
   })
 })
 
-describe('ConversorSelector', () => {
+describe('Selector.vue', () => {
   const dummyComponentData = {
     localVue,
     propsData: {
@@ -113,13 +113,13 @@ describe('ConversorSelector', () => {
   }
 
   test('mounts without any errors', () => {
-    const wrapper = mount(ConversorSelector, dummyComponentData)
+    const wrapper = mount(Selector, dummyComponentData)
 
     expect(wrapper).toBeTruthy()
   })
 
   it('emits and updates the model', async () => {
-    const wrapper = mount(ConversorSelector, dummyComponentData)
+    const wrapper = mount(Selector, dummyComponentData)
 
     expect(wrapper.vm.$data.model).toBeFalsy()
 
