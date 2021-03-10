@@ -2,7 +2,7 @@
   "name": "inteview_vizir",
   "version": "0.0.1",
   "description": "An app for a code interview",
-  "productName": "Vizir",
+  "productName": "Telzir",
   "author": "Alexandre Cavalheiro S. Tiago Da Silva <alexandre.cssilva@gmail.com>",
   "private": true,
   "scripts": {

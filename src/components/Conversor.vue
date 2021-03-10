@@ -16,8 +16,8 @@
             </q-card-section>
 
             <q-card-section>
-              <div>
-                R$ {{ planPrice.toFixed(fixedFloat) }}
+              <div data-cy="price">
+                {{ planPrice }}
               </div>
             </q-card-section>
           </q-card>
@@ -32,8 +32,8 @@
             </q-card-section>
 
             <q-card-section>
-              <div>
-                R$ {{ fullPrice.toFixed(fixedFloat) }}
+              <div data-cy="price">
+                {{ fullPrice }}
               </div>
             </q-card-section>
           </q-card>
@@ -79,6 +79,8 @@ export default defineComponent({
   },
   computed: {
     fare (): number {
+      if (!this.options) return 0
+
       let fare = this.options.call.get(this.origin)?.get(this.destination) as number
 
       fare = !fare
@@ -87,14 +89,16 @@ export default defineComponent({
 
       return fare
     },
-    fullPrice (): number {
-      return this.fare * this.time
-    },
-    planPrice (): number | string {
-      const freeTime = this.fare * this.plan
-      const finalPrice = this.fullPrice - freeTime
+    fullPrice (): string {
+      const price = this.fare * this.time
 
-      return finalPrice < 0 ? 0 : finalPrice
+      return price <= 0 ? '-' : `R$ ${price.toFixed(this.fixedFloat)}`
+    },
+    planPrice (): string {
+      const freeTime = this.fare * this.plan
+      const finalPrice = this.fare * this.time - freeTime
+
+      return finalPrice <= 0 ? '-' : `R$ ${finalPrice.toFixed(this.fixedFloat)}`
     }
   },
   methods: {

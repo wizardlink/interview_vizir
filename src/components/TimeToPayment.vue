@@ -8,6 +8,7 @@
         label="Origem"
         :options="callOptions"
         @update-model="updateOrigin"
+        data-cy="selector-origin"
       >
       </conversor-selector>
     </div>
@@ -20,6 +21,7 @@
         label="Destino"
         :options="callOptions"
         @update-model="updateDestination"
+        data-cy="selector-destination"
       >
       </conversor-selector>
     </div>
@@ -33,6 +35,7 @@
         prefix="FaleMais "
         :options="options.plans"
         @update-model="updatePlan"
+        data-cy="selector-plan"
       >
       </conversor-selector>
     </div>
@@ -46,6 +49,7 @@
         label="Tempo (m)"
         mask="###"
         v-model="time"
+        data-cy="input-time"
       >
         <template v-slot:prepend>
           <q-icon name="schedule" />
