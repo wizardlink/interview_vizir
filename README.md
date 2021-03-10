@@ -43,6 +43,22 @@ Repository responsible for showcasing the test done for an interview with [Vizir
 - [Babel] can be configured with [babel.config.js](./babel.config.js).
 - The theme is based on [SASS] variables which can be altered with the [quasar.variables.sass](./src/css/quasar.variables.sass) file.
 
+### Testing
+
+Testing can be done using [`@quasar/cli`] or by running the scripts in the [`package.json`](./package.json). Though it is recommended to stick to [`@quasar/cli`].
+
+#### [Jest]
+
+- `quasar test --unit jest`
+
+#### [Cypress]
+
+- `quasar test --e2e cypress`
+
+---
+
+Both can be tested by combining the commands as follows: `quasar test --e2e cypress --unit jest` the test files are located in [`./test`](./test) and [Cypress] generates videos and screenshots when an error occurs, those can be found inside [`./test/cypress`](./test/cypress).
+
 ## Considerations
 
 This is a small project that follows the requirements given by the company, feel free to open a pull request or issue, however I am likely to close it. The repository serves only for showcase.
@@ -62,9 +78,6 @@ This is a small project that follows the requirements given by the company, feel
 [eslint]: https://github.com/eslint/eslint
 [babel]: https://github.com/babel/babel
 [sass]: https://sass-lang.com/
-[jit]: https://en.wikipedia.org/wiki/Just-in-time_compilation
-[ant design]: https://ant.design/
-[`next.config.js`]: https://nextjs.org/docs/api-reference/next.config.js/introduction
-[`node-fetch`]: https://github.com/node-fetch/node-fetch
-[nextjs]: https://nextjs.org/
-
+[`@quasar/cli`]: https://github.com/quasarframework/quasar/tree/dev/cli
+[jest]: https://jestjs.io/
+[cypress]: https://www.cypress.io/
