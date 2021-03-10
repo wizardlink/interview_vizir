@@ -2,7 +2,7 @@
   <div class="row justify-around">
     <div class="col-12 col-sm-6 col-md-3">
       <!-- Origin -->
-      <conversor-selector
+      <selector
         class="q-mx-lg q-my-md"
         icon="flight_takeoff"
         label="Origem"
@@ -10,12 +10,12 @@
         @update-model="updateOrigin"
         data-cy="selector-origin"
       >
-      </conversor-selector>
+      </selector>
     </div>
 
     <!-- Destination -->
     <div class="col-12 col-sm-6 col-md-3">
-      <conversor-selector
+      <selector
         class="q-mx-lg q-my-md"
         icon="flight_land"
         label="Destino"
@@ -23,12 +23,12 @@
         @update-model="updateDestination"
         data-cy="selector-destination"
       >
-      </conversor-selector>
+      </selector>
     </div>
 
     <!-- Plans -->
     <div class="col-12 col-sm-6 col-md-3">
-      <conversor-selector
+      <selector
         class="q-mx-lg q-my-md"
         icon="attach_money"
         label="Plano (m)"
@@ -37,7 +37,7 @@
         @update-model="updatePlan"
         data-cy="selector-plan"
       >
-      </conversor-selector>
+      </selector>
     </div>
 
     <!-- Time -->
@@ -62,7 +62,7 @@
 <script lang="ts">
 import { defineComponent, PropType } from '@vue/composition-api'
 
-import ConversorSelector from './ConversorSelector.vue'
+import Selector from './Selector.vue'
 import { IConversorOptions } from './models'
 
 interface IDataOptions {
@@ -73,8 +73,8 @@ interface IDataOptions {
 }
 
 export default defineComponent({
-  name: 'TimeToPayment',
-  components: { ConversorSelector },
+  name: 'ConversorSelectors',
+  components: { Selector },
   data (): IDataOptions {
     return {
       destination: '',
@@ -91,6 +91,7 @@ export default defineComponent({
   },
   computed: {
     callOptions (): string[] {
+      // <Map>.keys() returns a MapIterator, so it needs to be converted to an Array
       return Array.from(this.options.call.keys())
     }
   },
@@ -121,6 +122,7 @@ export default defineComponent({
 
       this.updateParent()
     },
+    // Sends to the parent component the models it needs
     updateParent (): void {
       this.$emit('update-models', {
         destination: this.destination,

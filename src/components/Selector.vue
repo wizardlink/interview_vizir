@@ -17,7 +17,7 @@
 import { defineComponent } from '@vue/composition-api'
 
 export default defineComponent({
-  name: 'ConversorSelector',
+  name: 'Selector',
   data (): { model: string | number | null } {
     return {
       model: null

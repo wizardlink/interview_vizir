@@ -33,6 +33,10 @@ import { defineComponent, ref } from '@vue/composition-api'
 import Conversor from 'components/Conversor.vue'
 import { IConversorOptions } from 'components/models'
 
+/**
+ * Set here since normally this would be an API call which would then be in a store through VueX.
+ * If the app were to have that, having it here instead of a JSON saves up the time to re-write it.
+ */
 const callOptions = new Map<string, Map<string, number>>([
   [
     '011',
@@ -87,7 +91,7 @@ export default defineComponent({
     return {
       conversorOptions: ref<IConversorOptions>({
         call: callOptions,
-        plans: [30, 60, 120]
+        plans: [30, 60, 120] // Given by the interview test's specification
       })
     }
   }
